@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservation_app/pages/home/homge_page.dart';
-import 'package:reservation_app/pages/not_found/NotFoundPage.dart';
+import 'package:reservation_app/pages/not_found/not_found_page.dart';
 import 'package:reservation_app/pages/onboarding/onboarding_page.dart';
 import 'package:reservation_app/routes/route_named.dart';
 
