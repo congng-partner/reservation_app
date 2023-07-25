@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reservation_app/pages/onboarding/components/carousel_body_widget.dart';
+import 'package:reservation_app/routes/route_named.dart';
+import 'package:reservation_app/utils/storage_key_management.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -10,6 +13,40 @@ class OnBoardingPage extends StatefulWidget {
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
   var _curPageIndex = 0;
+  final _pageViewController = PageController();
+
+  final _carousels = <CarouselBodyWidget>[
+    const CarouselBodyWidget(
+      imagePath: 'assets/images/illustrations/tracking_maps.png',
+      title: 'Nearby restaurants',
+      description: 'Don\'t have to go far to find a good restaurant',
+    ),
+    const CarouselBodyWidget(
+      imagePath: 'assets/images/illustrations/order_illustration.png',
+      title: 'Convenient',
+      description: 'Online dish reservation',
+    ),
+    const CarouselBodyWidget(
+      imagePath: 'assets/images/illustrations/safe_food.png',
+      title: 'Delicious',
+      description: 'Enjoy great food with your family',
+    ),
+  ];
+
+  @override
+  void dispose() {
+    _pageViewController.dispose();
+    super.dispose();
+  }
+
+  void _onNavigateToHome(BuildContext context) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(StorageKeyManagement.isShownOnBoarding, true);
+
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, RouteNamed.homePage);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,30 +60,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ),
             Expanded(
               child: PageView(
+                controller: _pageViewController,
                 onPageChanged: (value) {
                   setState(() {
                     _curPageIndex = value;
                   });
                 },
-                children: const [
-                  CarouselBodyWidget(
-                    imagePath: 'assets/images/illustrations/tracking_maps.png',
-                    title: 'Nearby restaurants',
-                    description:
-                        'Don\'t have to go far to find a good restaurant',
-                  ),
-                  CarouselBodyWidget(
-                    imagePath:
-                        'assets/images/illustrations/order_illustration.png',
-                    title: 'Convenient',
-                    description: 'Online dish reservation',
-                  ),
-                  CarouselBodyWidget(
-                    imagePath: 'assets/images/illustrations/safe_food.png',
-                    title: 'Delicious',
-                    description: 'Enjoy great food with your family',
-                  ),
-                ],
+                children: _carousels,
               ),
             ),
             Padding(
@@ -55,19 +75,35 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Skip',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF4B5563)),
+                      InkWell(
+                        onTap: () {
+                          _onNavigateToHome(context);
+                        },
+                        child: const Text(
+                          'Skip',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF4B5563)),
+                        ),
                       ),
-                      Icon(
-                        Icons.arrow_forward,
-                        color: Color(0xFF999999),
+                      IconButton(
+                        onPressed: () {
+                          if (_curPageIndex == _carousels.length - 1) {
+                            _onNavigateToHome(context);
+                          } else {
+                            _pageViewController.animateToPage(_curPageIndex + 1,
+                                curve: Curves.easeInOut,
+                                duration: const Duration(milliseconds: 300));
+                          }
+                        },
+                        icon: const Icon(
+                          Icons.arrow_forward,
+                          color: Color(0xFF999999),
+                        ),
                       )
                     ],
                   ),

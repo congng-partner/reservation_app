@@ -5,9 +5,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Text("HOmePGage"),
+    return WillPopScope(
+      onWillPop: () async {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          'Please stay here',
+        )));
+        return false;
+      },
+      child: Scaffold(
+        appBar: AppBar(),
+        body: const SafeArea(
+          child: Text("Home Hage"),
+        ),
       ),
     );
   }

@@ -22,13 +22,26 @@ class CarouselBodyWidget extends StatelessWidget {
           flex: 1,
           child: Column(
             children: [
-              Text(title, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: Color(0xFF483232)),),
-              const SizedBox(height: 16,),
-              Text(description, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500,color: Color(0xFF483232)),),
+              Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF483232)),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                description,
+                style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF483232)),
+              ),
             ],
           ),
         )
-
       ],
     );
   }
