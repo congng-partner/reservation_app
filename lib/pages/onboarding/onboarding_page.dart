@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:reservation_app/components/indicator_carousel.dart';
 import 'package:reservation_app/pages/onboarding/components/carousel_body_widget.dart';
 import 'package:reservation_app/routes/route_named.dart';
+import 'package:reservation_app/utils/app_color.dart';
+import 'package:reservation_app/utils/app_distance.dart';
+import 'package:reservation_app/utils/assets_management.dart';
 import 'package:reservation_app/utils/storage_key_management.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,7 +60,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 28.0),
-              child: Image.asset('assets/images/logos/logo_with_text.png'),
+              child: Image.asset(AssetsManagement.logoWithText),
             ),
             Expanded(
               child: PageView(
@@ -71,7 +75,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ),
             Padding(
               padding:
-                  const EdgeInsets.only(left: 26.0, right: 26.0, bottom: 24.0),
+                   EdgeInsets.only(left: Dt.d_26, right: Dt.d_26, bottom: Dt.d_24),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -100,47 +104,23 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 duration: const Duration(milliseconds: 300));
                           }
                         },
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.arrow_forward,
-                          color: Color(0xFF999999),
+                          color: AppColor.grey_99,
                         ),
                       )
                     ],
                   ),
-                  buildThreeDot(context)
+                  IndicatorCarousel(
+                    curPageIndex: _curPageIndex,
+                    length: _carousels.length,
+                  )
                 ],
               ),
             )
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildThreeDot(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        buildDot(context, _curPageIndex == 0),
-        const SizedBox(
-          width: 8,
-        ),
-        buildDot(context, _curPageIndex == 1),
-        const SizedBox(
-          width: 8,
-        ),
-        buildDot(context, _curPageIndex == 2),
-      ],
-    );
-  }
-
-  Widget buildDot(BuildContext context, bool isSelected) {
-    return Container(
-      width: 10,
-      height: 10,
-      decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFAD3F32) : Colors.grey,
-          borderRadius: BorderRadius.circular(50)),
     );
   }
 }

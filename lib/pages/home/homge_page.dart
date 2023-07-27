@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:reservation_app/pages/home/components/banner_carousel.dart';
+import 'package:reservation_app/pages/home/components/best_seller_section.dart';
+import 'package:reservation_app/pages/home/components/home_appbar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -15,39 +24,47 @@ class HomePage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Color(0xFFF6EFE8),
-        appBar: AppBar(
-          backgroundColor: Color(0xFFF6EFE8),
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        appBar: HomeAppbar(),
+        drawer: Drawer(),
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Icon(
-                Icons.location_on_outlined,
-                color: Color(0xFFAD3F32),
+              SizedBox(
+                height: 10,
               ),
-              Text(
-                'Dong Khoi St, District 1',
-                style: TextStyle(
-                    color: Color(0xFF483332),
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500),
-              )
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search',
+                    hintStyle: TextStyle(
+                        color: Color(0xFF999999),
+                        fontSize: 13,
+                        fontWeight: FontWeight.normal),
+                    contentPadding: EdgeInsets.symmetric(vertical: 8),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Image.asset('assets/images/icons/ic_search.png'),
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              BannerCarousel(),
+              SizedBox(
+                height: 6,
+              ),
+              BestSellerSection()
             ],
           ),
-          centerTitle: true,
-          actions: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(50)),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.notifications_outlined),
-              ),
-            )
-          ],
-        ),
-        drawer: Drawer(),
-        body: const SafeArea(
-          child: Text("Body"),
         ),
       ),
     );
