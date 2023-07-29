@@ -86,12 +86,12 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         onTap: () {
                           _onNavigateToHome(context);
                         },
-                        child: const Text(
+                        child:  Text(
                           'Skip',
                           style: TextStyle(
-                              fontSize: 16,
+                              fontSize: Dt.d_16,
                               fontWeight: FontWeight.w500,
-                              color: Color(0xFF4B5563)),
+                              color: AppColor.grey_2),
                         ),
                       ),
                       IconButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservation_app/pages/home/components/banner_carousel.dart';
-import 'package:reservation_app/pages/home/components/best_seller_section.dart';
+import 'package:reservation_app/pages/home/components/sections/best_seller_section.dart';
 import 'package:reservation_app/pages/home/components/home_appbar.dart';
 
 class HomePage extends StatefulWidget {
