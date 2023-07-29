@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservation_app/routes/route_named.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget{
   const HomeAppbar({Key? key}) : super(key: key);
@@ -30,8 +31,10 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget{
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(50)),
           child: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.notifications_outlined),
+            onPressed: () {
+              Navigator.pushNamed(context, RouteNamed.notificationPage);
+            },
+            icon: const Icon(Icons.notifications_outlined),
           ),
         )
       ],

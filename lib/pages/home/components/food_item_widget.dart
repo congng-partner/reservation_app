@@ -6,7 +6,7 @@ import 'package:reservation_app/utils/app_distance.dart';
 class FoodItemWidget extends StatelessWidget {
   const FoodItemWidget({Key? key, required this.item}) : super(key: key);
 
-  final FoodInfo item;
+  final FoodInfoModel item;
 
   @override
   Widget build(BuildContext context) {
