@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reservation_app/pages/home/components/banner_carousel.dart';
+import 'package:reservation_app/pages/home/components/drawer_home.dart';
 import 'package:reservation_app/pages/home/components/sections/best_seller_section.dart';
 import 'package:reservation_app/pages/home/components/home_appbar.dart';
 import 'package:reservation_app/pages/home/components/sections/happy_deals_section.dart';
@@ -26,27 +27,27 @@ class _HomePageState extends State<HomePage> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: Color(0xFFF6EFE8),
-        appBar: HomeAppbar(),
-        drawer: Drawer(),
+        backgroundColor: const Color(0xFFF6EFE8),
+        appBar: const HomeAppbar(),
+        drawer: const DrawerHome(),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Search',
-                      hintStyle: TextStyle(
+                      hintStyle: const TextStyle(
                           color: Color(0xFF999999),
                           fontSize: 13,
                           fontWeight: FontWeight.normal),
-                      contentPadding: EdgeInsets.symmetric(vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Image.asset('assets/images/icons/ic_search.png'),
@@ -59,22 +60,22 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                BannerCarousel(),
-                SizedBox(
+                const BannerCarousel(),
+                const SizedBox(
                   height: 6,
                 ),
-                BestSellerSection(),
+                const BestSellerSection(),
                 SizedBox(
                   height: Dt.d_18,
                 ),
-                OurRestaurantSection(),
+                const OurRestaurantSection(),
                 SizedBox(
                   height: Dt.d_18,
                 ),
-                HappyDealsSection(),
+                const HappyDealsSection(),
                 SizedBox(
                   height: Dt.d_18,
                 ),
