@@ -5,8 +5,12 @@ abstract class AuthenticationState {}
 
 class AuthenticationInitial extends AuthenticationState {}
 
-class AuthLoading extends AuthenticationState{}
+class AuthLoading extends AuthenticationState {}
 
-class AuthLoginSuccess extends AuthenticationState{}
+class AuthLoginSuccess extends AuthenticationState {
+  final UserModel? userData;
 
-class AuthLoginFailure extends AuthenticationState{}
+  AuthLoginSuccess({this.userData});
+}
+
+class AuthLoginFailure extends AuthenticationState {}

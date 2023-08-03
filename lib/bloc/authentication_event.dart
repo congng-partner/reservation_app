@@ -9,3 +9,11 @@ class AuthLoginEvent extends AuthenticationEvent {
 
   AuthLoginEvent({required this.phoneNumber, required this.password});
 }
+
+class AuthGetUserInfoEvent extends AuthenticationEvent{
+  final String accessToken;
+
+  AuthGetUserInfoEvent({required this.accessToken});
+}
+
+class AuthCheckLoginEvent extends AuthenticationEvent{}

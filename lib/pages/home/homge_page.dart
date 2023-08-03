@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservation_app/bloc/authentication_bloc.dart';
 import 'package:reservation_app/pages/home/components/banner_carousel.dart';
-import 'package:reservation_app/pages/home/components/drawer_home.dart';
+import 'package:reservation_app/pages/home/components/drawer/drawer_home.dart';
 import 'package:reservation_app/pages/home/components/sections/best_seller_section.dart';
 import 'package:reservation_app/pages/home/components/home_appbar.dart';
 import 'package:reservation_app/pages/home/components/sections/happy_deals_section.dart';
@@ -16,6 +18,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  @override
+  void initState() {
+    context.read<AuthenticationBloc>().add(AuthCheckLoginEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

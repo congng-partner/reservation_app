@@ -23,7 +23,7 @@ class BestSellerSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: Dt.d_24, top: Dt.d_8),
           child: SizedBox(
-            height: 250,
+            height: MediaQuery.sizeOf(context).height / 3.1,
             child: ListView.separated(
               padding: EdgeInsets.only(right: Dt.d_24),
               separatorBuilder: (context, index) => const SizedBox(

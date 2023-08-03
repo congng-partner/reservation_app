@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reservation_app/components/indicator_carousel.dart';
 import 'package:reservation_app/pages/onboarding/components/carousel_body_widget.dart';
 import 'package:reservation_app/routes/route_named.dart';
+import 'package:reservation_app/services/local_storage/app_shared_preference.dart';
 import 'package:reservation_app/utils/app_color.dart';
 import 'package:reservation_app/utils/app_distance.dart';
 import 'package:reservation_app/utils/assets_management.dart';
@@ -44,9 +45,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   void _onNavigateToHome(BuildContext context) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(StorageKeyManagement.isShownOnBoarding, true);
-
+    AppSharedPreference.writeOnBoardingData();
     if (mounted) {
       Navigator.pushReplacementNamed(context, RouteNamed.homePage);
     }

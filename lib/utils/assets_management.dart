@@ -13,4 +13,5 @@ class AssetsManagement{
   static String timelineStep2 = '$images/time_line_step_2.png';
   static String timelineStep3 = '$images/time_line_step_3.png';
   static String greenTick = '$images/green_tick.png';
+  static String avatar = '$images/avatar.png';
 }

@@ -4,16 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reservation_app/bloc/authentication_bloc.dart';
 import 'package:reservation_app/routes/route_named.dart';
 import 'package:reservation_app/routes/routes_management.dart';
+import 'package:reservation_app/services/local_storage/app_shared_preference.dart';
 import 'package:reservation_app/utils/bloc_observer.dart';
-import 'package:reservation_app/utils/storage_key_management.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final bool? isShownOnBoarding =
-  prefs.getBool(StorageKeyManagement.isShownOnBoarding);
+  final bool? isShownOnBoarding = await AppSharedPreference.readOnBoardingData();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
