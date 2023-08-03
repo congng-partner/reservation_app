@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:reservation_app/bloc/authentication_bloc.dart';
 import 'package:reservation_app/data/user_model.dart';
 import 'package:reservation_app/utils/assets_management.dart';
 
@@ -208,7 +210,9 @@ class DrawerLogin extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        // Navigator.pushNamed(context, PageName.loginPage);
+                        context
+                            .read<AuthenticationBloc>()
+                            .add(AuthLogoutEvent());
                       },
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.start,

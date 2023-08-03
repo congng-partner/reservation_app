@@ -14,3 +14,5 @@ class AuthLoginSuccess extends AuthenticationState {
 }
 
 class AuthLoginFailure extends AuthenticationState {}
+
+class AuthLogoutState extends AuthenticationState {}

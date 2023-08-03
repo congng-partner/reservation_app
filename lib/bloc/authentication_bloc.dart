@@ -14,6 +14,7 @@ class AuthenticationBloc
     on<AuthLoginEvent>(_onLoginEvent);
     on<AuthGetUserInfoEvent>(_onGetUserInfoEvent);
     on<AuthCheckLoginEvent>(_onCheckLoginEvent);
+    on<AuthLogoutEvent>(_onLogoutEvent);
   }
 
   _onLoginEvent(AuthLoginEvent event, Emitter<AuthenticationState> emit) async {
@@ -42,12 +43,18 @@ class AuthenticationBloc
 
   _onCheckLoginEvent(
       AuthCheckLoginEvent event, Emitter<AuthenticationState> emit) async {
-
     var accessToken = await AppSharedPreference.readAccessToken();
-    if(accessToken != null){
+    if (accessToken != null) {
       add(AuthGetUserInfoEvent(accessToken: accessToken));
-    }else{
+    } else {
       emit(AuthLoginFailure());
     }
+  }
+
+  _onLogoutEvent(AuthLogoutEvent event, Emitter<AuthenticationState> emit) async {
+
+    AppSharedPreference.deleteAccessToken();
+
+    emit(AuthLogoutState());
   }
 }

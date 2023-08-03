@@ -21,4 +21,9 @@ class AppSharedPreference {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(StorageKeyManagement.accessTokenKey);
   }
+
+  static void deleteAccessToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(StorageKeyManagement.accessTokenKey);
+  }
 }

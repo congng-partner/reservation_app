@@ -17,3 +17,5 @@ class AuthGetUserInfoEvent extends AuthenticationEvent{
 }
 
 class AuthCheckLoginEvent extends AuthenticationEvent{}
+
+class AuthLogoutEvent extends AuthenticationEvent{}
